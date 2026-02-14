@@ -1,22 +1,24 @@
-# Roblox Tycoon (Scripts Only)
+# Level Hub Web Prototype
 
-Этот репозиторий содержит только скрипты для базового tycoon с GUI магазином.
+Репозиторий переведен в web-формат с backend API и клиентским интерфейсом.
 
-## Что внутри
-- **ServerScriptService/TycoonServer.lua** — лидерстаты, пассивный доход и обработка покупок.  
-- **StarterPlayerScripts/ShopGui.client.lua** — создание GUI магазина и вызов покупок.  
+## Структура
+- `index.html` — каркас экранов (главное меню, аккаунт, уровни, другое, редактор, мультиплеер-лента).
+- `styles.css` — базовые стили интерфейса.
+- `client.js` — навигация по экранам, авторизация, публикация/загрузка уровней.
+- `server.js` — HTTP-сервер и API авторизации/уровней.
+- `legacy/roblox/` — архив Roblox-скриптов из прошлой версии проекта.
 
-## Как использовать
-1. Скопируй скрипты в соответствующие сервисы Roblox Studio:
-   - `TycoonServer.lua` → **ServerScriptService**
-   - `ShopGui.client.lua` → **StarterPlayerScripts**
-2. В файле `TycoonServer.lua` укажи свои ID:
-   - `GAMEPASS_DOUBLE_MONEY_ID`
-   - `DEV_PRODUCT_MONEY_100K_ID`
-   - `DEV_PRODUCT_MONEY_500K_ID`
-3. Опубликуй Developer Products и GamePass в Roblox (Creator Dashboard).
+## Запуск
+```bash
+node server.js
+```
 
-## Магазин
-- **2x Деньги** — 40 Robux (GamePass)
-- **100,000 Денег** — 100 Robux (Developer Product)
-- **500,000 Денег** — 250 Robux (Developer Product, можно поменять)
+Открой `http://localhost:3000`.
+
+## API
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `POST /api/levels` (требует `Authorization: Bearer <token>`)
+- `GET /api/levels`
+- `GET /api/levels/:id`

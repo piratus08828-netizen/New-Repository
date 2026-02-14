@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Level Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Level Hub</h1>
+      <button id="open-account-modal" class="btn">Аккаунт</button>
+    </header>
+
+    <main>
+      <section id="screen-main-menu" class="screen active">
+        <h2>Главное меню</h2>
+        <div class="actions">
+          <button class="btn" data-target="screen-levels">Уровни</button>
+          <button class="btn" data-target="screen-other">Другое</button>
+          <button class="btn" data-target="screen-editor">Редактор уровня</button>
+          <button class="btn" data-target="screen-multiplayer-feed">Мультиплеер-лента</button>
+        </div>
+      </section>
+
+      <section id="screen-levels" class="screen">
+        <h2>Экран уровней</h2>
+        <button class="btn secondary" data-target="screen-main-menu">Назад</button>
+        <ul id="levels-list" class="list"></ul>
+      </section>
+
+      <section id="screen-other" class="screen">
+        <h2>Другое</h2>
+        <button class="btn secondary" data-target="screen-main-menu">Назад</button>
+        <p>Технические настройки, помощь и дополнительные режимы.</p>
+      </section>
+
+      <section id="screen-editor" class="screen">
+        <h2>Редактор уровня</h2>
+        <button class="btn secondary" data-target="screen-main-menu">Назад</button>
+        <form id="publish-level-form" class="card">
+          <label>
+            Название
+            <input name="title" required />
+          </label>
+          <label>
+            Описание
+            <textarea name="description" required></textarea>
+          </label>
+          <label>
+            Данные уровня (JSON)
+            <textarea name="data" required>{"version":1,"objects":[]}</textarea>
+          </label>
+          <button class="btn" type="submit">Опубликовать уровень</button>
+        </form>
+      </section>
+
+      <section id="screen-multiplayer-feed" class="screen">
+        <h2>Мультиплеер-лента уровней</h2>
+        <button class="btn secondary" data-target="screen-main-menu">Назад</button>
+        <ul id="multiplayer-feed" class="list"></ul>
+      </section>
+    </main>
+
+    <div id="account-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <h3>Аккаунт</h3>
+        <form id="register-form" class="card compact">
+          <h4>Регистрация</h4>
+          <input name="username" placeholder="Логин" required />
+          <input type="password" name="password" placeholder="Пароль" required />
+          <button class="btn" type="submit">Зарегистрироваться</button>
+        </form>
+        <form id="login-form" class="card compact">
+          <h4>Вход</h4>
+          <input name="username" placeholder="Логин" required />
+          <input type="password" name="password" placeholder="Пароль" required />
+          <button class="btn" type="submit">Войти</button>
+        </form>
+        <button id="close-account-modal" class="btn secondary">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="client.js" defer></script>
+  </body>
+</html>
